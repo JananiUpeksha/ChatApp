@@ -5,21 +5,21 @@ import { connectDB } from "./lib/db.js";
 
 dotenv.config();
 const app = express();
-const PORT = process.env.PORT || 3000;  // Default to 3000 if PORT is not set
+const PORT = process.env.PORT || 3000;
 
-app.use(express.json());  // ✅ Fix: Add parentheses to use middleware
+app.use(express.json());  
 
-// ✅ Test Route for Root URL
+// est Route for Root URL
 app.get("/", (req, res) => {
     console.log("Root route hit!");
     res.send("API is running...");
 });
 
-// ✅ Auth Routes
+//Auth Routes
 app.use("/api/auth", authRoutes);
 
-// ✅ Start Server
+//Start Server
 app.listen(PORT, () => {
-    console.log("✅ Server is running on port " + PORT);
+    console.log("Server is running on port " + PORT);
     connectDB();
 });
