@@ -9,17 +9,17 @@ import SettingsPage from './pages/SettingsPage.jsx';
 import { useAuthStore } from './store/useAuthStore'; // Correctly import the named export
 import { Loader } from 'lucide-react';  // Assuming Loader is from lucide-react
 import { Toaster } from 'react-hot-toast'; // Fixed import statement
+import { useThemeStore } from './store/useThemeStore';
 
 function App() {
   const { authUser, checkAuth, isCheckingAuth, onlineUsers } = useAuthStore();
-  
-  console.log({ onlineUsers });
+  const { theme } = useThemeStore();
 
   useEffect(() => {
     checkAuth();  // Check auth status on component mount
   }, [checkAuth]);
 
-  console.log({ authUser });
+  
 
   // Loader screen if checking authentication
   if (isCheckingAuth && !authUser) {
@@ -31,7 +31,7 @@ function App() {
   }
 
   return (
-    <div /* data-theme={theme} */> {/* Uncomment this if you're using theme store */}
+    <div data-theme={theme}> 
       <Navbar />
       <Routes>
         <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
